@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vella bello tcp ip</title>
+</head>
+<body onload="main()">
+        <button id="ip" style="height: 100vh; width: 100vw; background-color: black; font-size: 40px; color: white;" onclick="copytoclipboard()">copia l'indirizzo</button>
+
+        <script>
+            var a = "oddip"
+            //tcp ip qua
+            function main(){
+                document.getElementById("ip").innerHTML = a
+            }
+
+            function copytoclipboard(){
+                navigator.clipboard.writeText(a);
+            }
+        </script>
+</body>
+</html>
