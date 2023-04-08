@@ -61,11 +61,11 @@ def ngrok():
     return(a["tunnels"][0]["public_url"])
 
 def kite():
-    p = Popen("python pagekite.py --defaults --service_on=http,https:{0}:localhost:8080:{1}".format(config['pagekite_url'],config['pagekite_token']),stdout=DEVNULL,stderr=PIPE)
-    print("pagekite avviato | http localhost:8080 -> vellabello.pagekite.me")
+    p = Popen('python '+os.getcwd()+'\pagekite.py --defaults --service_on=http,https:{0}:localhost:8080:{1}'.format(config['pagekite_url'],config['pagekite_token']),stdout=DEVNULL,stderr=PIPE)
     a = p.stderr.read(2)
     if(a==b"\r\n"):
         raise Exception("pagekite non avviato, url o token forniti non validi")
+    print("pagekite avviato | http localhost:8080 -> "+config["pagekite_url"])
     return
 
 def getngrokip():
