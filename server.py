@@ -36,9 +36,14 @@ def ngrok():
     run("ngrok.exe config add-authtoken 2L9EDmtuhkFOsGFAYEdcMUa6ujc_6evbbSpM7yrdPRmuKrF5z",stdout=DEVNULL,stderr=DEVNULL)
     run("taskkill /F /IM  ngrok.exe /T",stdout=DEVNULL,stderr=DEVNULL)
     Popen(["cd",os.getcwd(),"&&","ngrok.exe","tcp", "25565"], shell = True,stdout=DEVNULL,stderr=DEVNULL)
-    sleep(1)
-    r = get("http://127.0.0.1:4040/api/tunnels")
-    a = loads(r.text)
+    i = 0
+    while i<10:
+        sleep(1)
+        r = get("http://127.0.0.1:4040/api/tunnels")
+        a = loads(r.text)
+        if(len(a["tunnels"])>0):
+            break
+        i+=1
     print("ngrok avviato | tcp localhost:25565 -> "+a["tunnels"][0]["public_url"])
     return(a["tunnels"][0]["public_url"])
 
